@@ -1,9 +1,11 @@
 class eventHandler:
     handlers = []
 
+    # I created an array to store and handle the user request
     def __init__(self):
         self.handlers = []
 
+    # The function here handles the add of new request from the user
     def register(self, handler):
         print("registering event")
         self.handlers.append(handler)
