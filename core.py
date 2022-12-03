@@ -18,11 +18,13 @@ class ai:
         if name is not None:
             self._name__ = name
 
+
         # Set up the handlers
         self.beforeSpeak = eventHandler()
         self.afterSpeak = eventHandler()
         self.beforeListening = eventHandler()
         self.afterListening = eventHandler()
+
 
         with self.m as source:
             self.r.adjust_for_ambient_noise(source)

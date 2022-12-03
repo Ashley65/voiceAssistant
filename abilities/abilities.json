@@ -1,0 +1,28 @@
+{
+  "plugins": ["weatherAbility","todoAbility","goodDayAbility","calenderAbility","factsAbility","timerAbility","jokesAbility"],
+  "abilities": [
+    {
+      "name": "weather"
+    },
+    {
+      "name": "todo"
+    },
+    {
+      "name": "goodDay"
+    },
+    {
+      "name": "calender"
+    },
+
+    {
+      "name": "facts"
+    },
+    {
+      "name": "timer"
+
+    },
+    {
+      "name": "jokes"
+    }
+  ]
+}
