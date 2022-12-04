@@ -18,21 +18,19 @@ class ai:
         if name is not None:
             self._name__ = name
 
-
         # Set up the handlers
         self.beforeSpeak = eventHandler()
         self.afterSpeak = eventHandler()
         self.beforeListening = eventHandler()
         self.afterListening = eventHandler()
 
-
         with self.m as source:
             self.r.adjust_for_ambient_noise(source)
 
         # Changing voices
-        voices = self.engine.getProerty('voices')
+        voices = self.engine.getProperty('voices')
         for voice in voices:
-            self.engine.setProerty('voice', voices[0].id)
+            self.engine.setProperty('voice', voices[0].id)
             name = voices[0].name
             print(name)
 
