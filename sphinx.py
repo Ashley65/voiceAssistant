@@ -1,9 +1,8 @@
-from core import ai
-import sys
 import json
-from event import eventHandler
-from datetime import datetime
+
 from abilities import loader, factory
+from core import ai
+from event import eventHandler
 
 sphinx = ai()
 
@@ -35,7 +34,7 @@ for pluginItem in plugins:
 
 sphinx.start.trigger()
 sphinx.say("Hello")
-while True and command not in ["good bye", 'bye', 'quit', 'exit','goodbye', 'see you']:
+while command not in ["good bye", 'bye', 'quit', 'exit', 'goodbye', 'see you']:
     command = ""
     command = sphinx.listen()
     if command:

@@ -56,7 +56,7 @@ class ai:
         # recognise speech using Sphinx
         try:
             phrase = self.r.recognize_sphinx(audio, show_all=False, language="en-GB")
-            sentence = "You just said that " + phrase
+            sentence = f"You just said that   {phrase}"
             self.engine.say(sentence)
         except sr.UnknownValueError:
             print("Sphinx could not understand audio")
@@ -73,8 +73,8 @@ class ai:
                 with self.m as source:
                     audio = self.r.listen(source)
                 phrase = self.r.recognize_sphinx(audio)
-                print("you said" + self.r.recognize_sphinx(audio))
-                self.engine.say("You said " + self.r.recognize_sphinx(audio))
+                print(f"you said + {self.r.recognize_sphinx(audio)}")
+                self.engine.say(f"you said + {self.r.recognize_sphinx(audio)}")
                 self.engine.runAndWait()
                 return phrase
 
