@@ -9,7 +9,7 @@ class pluginInterface:
 
 
 def importModule(name: str) -> pluginInterface:
-    return importlib.import_module('name')
+    return importlib.import_module(name)
 
 
 def loadAbilities(plugins: list[str]) -> None:
