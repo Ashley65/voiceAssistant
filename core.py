@@ -48,6 +48,7 @@ class ai:
 
     def listen(self):
 
+        global phrase
         print("Say Something")
         self.engine.say('say something')
         with self.m as source:

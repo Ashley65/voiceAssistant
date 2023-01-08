@@ -6,7 +6,7 @@ import factory
 from core import ai
 
 
-class weatherAbility():
+class weatherAbility:
     key = "bac1e0425a5ef563f3ecf6a43b702c46"
 
     def __init__(self):
@@ -25,7 +25,9 @@ class weatherAbility():
 
     def forecast(self):
         forecast = self.mgr.one_call(lat=self.lat, lon=self.lng)
-        # Getting the data
+        # Getting the current weather
+
+
 
 
 @dataclass
