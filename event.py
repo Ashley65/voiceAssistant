@@ -19,3 +19,4 @@ class eventHandler:
     def trigger(self, *args, **kwargs):
         for handler in self.handlers:
             handler(*args, **kwargs)
+            return self

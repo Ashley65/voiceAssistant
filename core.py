@@ -11,28 +11,32 @@ class ai:
     def __init__(self, name=None):
 
         self.engine = tts.init()
-        # creating recognizer and microphone instances
+        # creating recognizer and microphone instances for speech recognition
         self.r = sr.Recognizer()
         self.m = sr.Microphone()
 
         if name is not None:
             self._name__ = name
 
-        # Set up the handlers
+        # Set up the handlers for the start and stop events
         self.beforeSpeak = eventHandler()
         self.afterSpeak = eventHandler()
         self.beforeListening = eventHandler()
         self.afterListening = eventHandler()
 
+        # listens to the background noise and adjust the energy threshold
         with self.m as source:
             self.r.adjust_for_ambient_noise(source)
 
-        # Changing voices
         voices = self.engine.getProperty('voices')
         for voice in voices:
             self.engine.setProperty('voice', voices[0].id)
+            self.engine.setProperty('rate', 150)
             name = voices[0].name
             print(name)
+            # self.engine.say(f"my name is {name}")
+            # self.engine.runAndWait()
+
 
     @property
     def name(self):
@@ -45,6 +49,7 @@ class ai:
     def say(self, sentence):
         self.engine.say(sentence)
         self.engine.runAndWait()
+        return sentence
 
     def listen(self):
 
@@ -54,7 +59,7 @@ class ai:
         with self.m as source:
             audio: AudioData = self.r.listen(source)
 
-        # recognise speech using Sphinx
+        # recognise speech engine been used is Sphinx
         try:
             phrase = self.r.recognize_sphinx(audio, show_all=False, language="en-GB")
             sentence = f"You just said that   {phrase}"
@@ -84,5 +89,8 @@ class ai:
         return phrase
 
     def stop_ai(self):
+        self.r.stop_listening()
+        self.engine.stop()
+        self.engine.runAndWait()
         self.engine.stop()
         print("stopped Sphinx engine")

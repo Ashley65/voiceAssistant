@@ -26,6 +26,30 @@ class weatherAbility:
     def forecast(self):
         forecast = self.mgr.one_call(lat=self.lat, lon=self.lng)
         # Getting the current weather
+        current = forecast.current
+        # Getting the hourly forecast
+        hourly = forecast.forecast_hourly
+        # Getting the daily forecast
+        daily = forecast.forecast_daily
+
+        # Getting the current weather
+        currentWeather = current.weather_code
+        # Getting the current temperature
+        currentTemp = current.temperature("celsius")["temp"]
+        # Getting the current humidity
+        currentHumidity = current.humidity
+
+        # Getting the hourly forecast
+        hourlyWeather = hourly[0].weather_code
+        hourlyTemp = hourly[0].temperature("celsius")["temp"]
+        hourlyHumidity = hourly[0].humidity
+
+        # Getting the daily forecast
+        dailyWeather = daily[0].weather_code
+        dailyTemp = daily[0].temperature("celsius")["temp"]
+        dailyHumidity = daily[0].humidity
+
+        return currentWeather, currentTemp, currentHumidity, hourlyWeather, hourlyTemp, hourlyHumidity, dailyWeather, dailyTemp, dailyHumidity
 
 
 
@@ -42,7 +66,7 @@ class weather:
     @staticmethod
     def handleCommand(command: str, core: ai):
         forecast = weatherAbility.weather
-        ai.say(forecast)
+        core.say(forecast)
         return weatherAbility.forecast
 
 

@@ -12,14 +12,36 @@ sphinx.start = eventHandler()
 sphinx.stop = eventHandler()
 
 command = ""
+
+# loading the json data
+jsonData = loadJsonData()
+jsonData = jsonData.loadData()
+
+# getting the plugins and abilities
+plugins = jsonData.get_Plugins
+abilities = jsonData.get_Abilities
+
+# creating a new instance of the factory
+factory = factory.factory(plugins, abilities)
+
+# loading the plugins
+factory.load_plugins()
+
+# registering the plugins
+factory.register_plugins()
+
+# loading the abilities
+factory.load_abilities()
+
+# registering the abilities
+factory.register_abilities()
 jsonData = loadJsonData()
 data = jsonData.loadData()
 
 
 # loading up the ability of the AI
 
-    # loads the plugins
-    #loader.loadAbilities(data["plugins"])
+
 
 #abilities = [factory.create(item) for item in data["abilities"]]
 #print(f'abilities; {abilities}')
@@ -30,10 +52,10 @@ data = jsonData.loadData()
 #
 #     #loader.loadPlugin(pluginData["plugins"])
 #
-# plugins = [factory.create(pluginItem) for pluginItem in pluginData["items"]]
+plugins = [factory.create(pluginItem) for pluginItem in pluginData["items"]]
 #
-# for pluginItem in plugins:
-#     pluginItem.register(sphinx)
+for pluginItem in plugins:
+    pluginItem.register(sphinx)
 #
 # sphinx.start.trigger()
 # sphinx.say("Hello")
